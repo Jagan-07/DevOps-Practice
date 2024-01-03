@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'docker run -d -p 8000:8000 trainwithshubham/django-todo:latest'
+                sh 'docker build -t trainwithshubham/django-app:latest'
             }
         }
     }
