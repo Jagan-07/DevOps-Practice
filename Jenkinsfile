@@ -1,33 +1,11 @@
 /* Requires the Docker Pipeline plugin */
 pipeline {
-    agent { label 'docker' }
-
-    environment {
-        dockerHome = tool 'myDocker'
-        PATH = "${dockerHome}/bin:${env.PATH}"
-    }
-
+    agent { docker { image 'maven:3.9.6-eclipse-temurin-17-alpine' } }
     stages {
-        stage('Initialize') {
+        stage('build') {
             steps {
-                script {
-                    // Additional initialization steps if needed
-                    echo 'Initializing...'
-                }
+                sh 'mvn --version'
             }
         }
-
-        stage('Build') {
-            steps {
-                script {
-                    echo 'Building the project...'
-                    sh 'mvn --version'
-                    // Additional build steps if needed
-                }
-            }
-        }
-
-        // Add more stages as needed
-
     }
 }
