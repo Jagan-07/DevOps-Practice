@@ -12,6 +12,7 @@ pipeline {
             steps {
                 script {
                     // Additional initialization steps if needed
+                    echo 'Initializing...'
                 }
             }
         }
