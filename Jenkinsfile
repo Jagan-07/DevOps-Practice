@@ -1,4 +1,5 @@
 pipeline {
+<<<<<<< HEAD
     agent any
     stages{
         stage('code'){
@@ -20,6 +21,13 @@ pipeline {
         stage('Deploy'){
             steps{
                 sh "docker run -d --name iss-tracker -p 8002:8000 jagan07/iss-tracker:latest"
+=======
+    agent { docker { image 'trainwithshubham/django-todo:latest' } }
+    stages {
+        stage('build') {
+            steps {
+                sh 'docker build -t trainwithshubham/django-app:latest'
+>>>>>>> e105210b6e663f70d4ef8ddd8bb1305ab8a27438
             }
         }
     }
