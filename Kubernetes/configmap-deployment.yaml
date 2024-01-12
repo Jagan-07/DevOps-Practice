@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: configmap-deployment
+  labels:
+    env: sandbox
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      env: sandbox
+  template:
+    metadata:
+      labels:
+        env: sandbox
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+        env:
+          - name: application
+            valueFrom:
+              configMapKeyRef:
+                name: my-configmap
+                key: application
