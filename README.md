@@ -1,2 +1,2 @@
-# DevOps-Practice
-DevOps Practices and notes of 90DaysOfDevOps!
+# 90-DevOps-Practice
+This repo holds all the devops tools practice notes with example files.
