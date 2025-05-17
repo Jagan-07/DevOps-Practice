@@ -4,13 +4,13 @@ metadata:
   name: example-ingress
   metadata:
   annotations:
-    nginx.ingress.kubernetes.io/limit-req-zone: "global_limit"
-    nginx.ingress.kubernetes.io/limit-req-burst: "2"
-    nginx.ingress.kubernetes.io/limit-req-nodelay: "true"
+    nginx.ingress.kubernetes.io/limit-req-zone: "global_limit"  # Use the global rate limiting zone defined in the config map
+    nginx.ingress.kubernetes.io/limit-req-burst: "2"  # Set the burst size. Allows 2 additional requests to exceed the limit briefly
+    nginx.ingress.kubernetes.io/limit-req-nodelay: "true"  # Enforces the rate limit immediately without delaying excess requests
 spec:
   ingressClassName: nginx
   rules:
-    - host: hello-world.example
+    - host: hello-world.example  # Host to match for the ingress rule
       http:
         paths:
           - path: /v1
