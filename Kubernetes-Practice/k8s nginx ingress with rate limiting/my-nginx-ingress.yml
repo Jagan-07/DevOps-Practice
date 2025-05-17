@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-ingress
+  metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/limit-req-zone: "global_limit"
+    nginx.ingress.kubernetes.io/limit-req-burst: "2"
+    nginx.ingress.kubernetes.io/limit-req-nodelay: "true"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: hello-world.example
+      http:
+        paths:
+          - path: /v1
+            pathType: Prefix
+            backend:
+              service:
+                name: web
+                port:
+                  number: 8080
+          - path: /v2
+            pathType: Prefix
+            backend:
+              service:
+                name: web2
+                port:
+                  number: 8080
+

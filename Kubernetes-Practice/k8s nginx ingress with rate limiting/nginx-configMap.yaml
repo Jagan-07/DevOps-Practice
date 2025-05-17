@@ -1,0 +1,14 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: ingress-nginx-controller
+  namespace: ingress-nginx
+data:
+  limit-req-status-code: "429"
+  limit-req-zone-name: "global"
+  limit-req-zone-size: "10m"
+  http-snippet: |
+    limit_req_zone $binary_remote_addr zone=global_limit:10m rate=5r/m;
+  server-snippet: |
+    limit_req zone=global_limit burst=2 nodelay;
+  log-format-upstream:  '$remote_addr - $remote_user [$time_local] "$request" $status $body_bytes_sent "$http_referer"  "$http_user_agent" "$http_x_forwarded_for" "$http_x_client_id"'
